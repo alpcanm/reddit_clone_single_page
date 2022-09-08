@@ -15,15 +15,18 @@ class ControllerPostList {
       return _postModelList;
     }
     for (int i = 0; i < piece; i++) {
-      add(tempList.allPosts[_currentIndex]);
       if (tempList.allPosts.length == _currentIndex) {
         return _postModelList;
       }
+
+      add(tempList.allPosts[_currentIndex]);
     }
+
     return _postModelList;
   }
 
   int _currentIndex = 0;
+
   void zeroCurrentIndex() {
     _currentIndex = 0;
   }

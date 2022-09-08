@@ -15,6 +15,10 @@ class RepositoryPostList {
     _tempList.addAll(iterable);
   }
 
+  clear() {
+    _tempList.clear();
+  }
+
   Future<void> fetchPosts() async {
     final data = await PostService.getPosts();
 

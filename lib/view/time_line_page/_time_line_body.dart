@@ -38,7 +38,7 @@ class _MoreButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
         onPressed: () {
-          context.read<PaginationBloc>().add(PaginationFetch());
+          context.read<PaginationBloc>().add(PaginationFetch(status: PaginationStatus.success));
         },
         child: const Text(
           "Daha Fazla",

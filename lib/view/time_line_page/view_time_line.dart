@@ -31,51 +31,71 @@ class ViewTimeLine extends StatelessWidget {
   static const List<Widget> _widgetOptions = <Widget>[
     _TimeLinePage(),
     Text(
-      'Index 1: Business',
+      'Second page',
       style: optionStyle,
     ),
     Text(
-      'Index 2: School',
+      'Message page',
+      style: optionStyle,
+    ),
+    Text(
+      'Profile page',
       style: optionStyle,
     ),
   ];
 
   @override
   Widget build(BuildContext context) {
-    final bloc = BottomSheetBloc();
+    final bottomSheetBloc = BottomSheetBloc();
     return Scaffold(
       appBar: const _AppBar(),
       backgroundColor: ColorConst.backgroundColor,
       body: BlocBuilder<BottomSheetBloc, BottomSheetState>(
-        bloc: bloc,
+        buildWhen: (previous, current) => previous.currentIndex != current.currentIndex,
+        bloc: bottomSheetBloc,
         builder: (context, state) {
-          return Center(
-            child: _widgetOptions.elementAt(state.currentIndex),
-          );
+          return _widgetOptions.elementAt(state.currentIndex);
         },
       ),
       bottomNavigationBar: BlocBuilder<BottomSheetBloc, BottomSheetState>(
-        bloc: bloc,
+        buildWhen: (previous, current) => previous.currentIndex != current.currentIndex,
+        bloc: bottomSheetBloc,
         builder: (context, state) {
           return BottomNavigationBar(
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Home',
+                icon: Icon(
+                  Icons.home,
+                ),
+                label: "1",
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.business),
-                label: 'Business',
+                icon: Icon(
+                  Icons.amp_stories,
+                ),
+                label: "2",
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.school),
-                label: 'School',
+                icon: Icon(
+                  Icons.message,
+                ),
+                label: "3",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.person,
+                ),
+                label: "4",
               ),
             ],
             currentIndex: state.currentIndex,
-            selectedItemColor: Colors.amber[800],
+            unselectedItemColor: ColorConst.backgroundColor,
+            type: BottomNavigationBarType.fixed,
+            selectedItemColor: ColorConst.activeBottomColor,
             onTap: (int index) {
-              bloc.add(OnTapButton(index));
+              bottomSheetBloc.add(OnTapButton(index));
             },
           );
         },

@@ -11,7 +11,16 @@ part 'pagination_state.dart';
 class PaginationBloc extends Bloc<PaginationEvent, PaginationState> {
   PaginationBloc() : super(const PaginationState()) {
     on<PaginationFetch>(_onPaginationFetch);
-    RepositoryPostList.instance.fetchPosts().then((value) => add(PaginationFetch()));
+    final repository = RepositoryPostList.instance;
+    repository.clear();
+    repository.fetchPosts().then((value) => [
+          controllerPostList.zeroCurrentIndex(),
+          add(
+            PaginationFetch(
+              status: PaginationStatus.initial,
+            ),
+          )
+        ]);
   }
   final ControllerPostList controllerPostList = ControllerPostList.instance;
   _onPaginationFetch(PaginationFetch event, Emitter<PaginationState> emit) {
