@@ -9,11 +9,17 @@ class ControllerPostList {
   final tempList = RepositoryPostList.instance;
   final List<PostModel> _postModelList = [];
 
-  List<PostModel> fetchProducts(int index, [int piece = 3]) {
-    for (int i = 0; i < piece; i++) {
-      add(tempList.allPosts[index]);
+  List<PostModel> fetchProducts(int index, [int piece = 2]) {
+    _postModelList.clear();
+    if (tempList.allPosts.length == index) {
+      return _postModelList;
     }
-
+    for (int i = 0; i < piece; i++) {
+      add(tempList.allPosts[_currentIndex]);
+      if (tempList.allPosts.length == _currentIndex) {
+        return _postModelList;
+      }
+    }
     return _postModelList;
   }
 

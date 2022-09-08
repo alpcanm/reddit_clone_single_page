@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../core/consts/color_const.dart';
 import '../../core/consts/size_const.dart';
-import '../feature/bloc/pagination_bloc.dart';
+import '../../feature/bloc/pagination_bloc.dart';
+import '../components/c_card.dart';
 
 part '_time_line_body.dart';
 part '_appbar.dart';
@@ -15,6 +16,7 @@ class ViewTimeLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorConst.backgroundColor,
       appBar: const _AppBar(),
       body: BlocProvider(
         create: (context) => PaginationBloc(),

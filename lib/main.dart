@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:reddit_clone_single_page/view/view_time_line.dart';
+import 'package:reddit_clone_single_page/view/time_line_page/view_time_line.dart';
 
 void main() {
   runApp(const MyApp());
