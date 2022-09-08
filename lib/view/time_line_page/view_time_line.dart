@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reddit_clone_single_page/feature/controller/controller_post_list.dart';
 import '../../core/consts/color_const.dart';
 import '../../core/consts/size_const.dart';
+import '../../core/consts/text_style.dart';
 import '../../feature/bloc/pagination_bloc.dart';
 import '../components/c_card.dart';
 import 'bloc/bottom_sheet_bloc.dart';
@@ -12,35 +13,21 @@ import 'bloc/bottom_sheet_bloc.dart';
 part '_time_line_body.dart';
 part '_appbar.dart';
 
-class _TimeLinePage extends StatelessWidget {
-  const _TimeLinePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => PaginationBloc(),
-      child: const _TimeLineBody(),
-    );
-  }
-}
-
 class ViewTimeLine extends StatelessWidget {
   const ViewTimeLine({super.key});
-
-  static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     _TimeLinePage(),
     Text(
       'Second page',
-      style: optionStyle,
+      style: ConstTextStyle.optionStyle,
     ),
     Text(
       'Message page',
-      style: optionStyle,
+      style: ConstTextStyle.optionStyle,
     ),
     Text(
       'Profile page',
-      style: optionStyle,
+      style: ConstTextStyle.optionStyle,
     ),
   ];
 
@@ -100,6 +87,18 @@ class ViewTimeLine extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+}
+
+class _TimeLinePage extends StatelessWidget {
+  const _TimeLinePage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => PaginationBloc(),
+      child: const _TimeLineBody(),
     );
   }
 }

@@ -24,7 +24,7 @@ class _AppBar extends StatelessWidget implements PreferredSizeWidget {
           color: ColorConst.backgroundColor,
         ),
         SizedBox(
-          width: 16,
+          width: SizeConst.size16,
         )
       ],
       title: const Text(

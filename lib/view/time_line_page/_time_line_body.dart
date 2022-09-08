@@ -9,7 +9,7 @@ class _TimeLineBody extends StatelessWidget {
       buildWhen: (previous, current) => previous.posts != current.posts,
       builder: (context, state) {
         return ListView.separated(
-            separatorBuilder: (context, index) => const SizedBox(height: 8),
+            separatorBuilder: (context, index) => const SizedBox(height: SizeConst.size8),
             shrinkWrap: true,
             itemCount: state.posts.length,
             itemBuilder: (context, index) {
@@ -54,11 +54,13 @@ class _ClearButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
+        final controllerPostList = ControllerPostList.instance;
         context.read<PaginationBloc>().add(PaginationFetch(status: PaginationStatus.initial));
-        ControllerPostList.instance.zeroCurrentIndex();
+        controllerPostList.zeroCurrentIndex();
+        controllerPostList.piece = 2;
       },
       child: const Text(
-        "Sıfırla",
+        "Sıfırlar",
         style: TextStyle(color: Colors.red),
       ),
     );

@@ -15,11 +15,7 @@ class PaginationBloc extends Bloc<PaginationEvent, PaginationState> {
     repository.clear();
     repository.fetchPosts().then((value) => [
           controllerPostList.zeroCurrentIndex(),
-          add(
-            PaginationFetch(
-              status: PaginationStatus.initial,
-            ),
-          )
+          add(PaginationFetch(status: PaginationStatus.initial)),
         ]);
   }
   final ControllerPostList controllerPostList = ControllerPostList.instance;
