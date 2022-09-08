@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:reddit_clone_single_page/feature/controller/controller_post_list.dart';
 
+import '../repository/repository_post_list.dart';
 import '../model/post_model.dart';
 
 part 'pagination_event.dart';
@@ -10,9 +11,9 @@ part 'pagination_state.dart';
 class PaginationBloc extends Bloc<PaginationEvent, PaginationState> {
   PaginationBloc() : super(const PaginationState()) {
     on<PaginationFetch>(_onPaginationFetch);
+    RepositoryPostList.instance.fetchPosts().then((value) => add(PaginationFetch()));
   }
   final ControllerPostList controllerPostList = ControllerPostList.instance;
-
   _onPaginationFetch(PaginationFetch event, Emitter<PaginationState> emit) {
     if (event.status == PaginationStatus.initial) {
       emit(
