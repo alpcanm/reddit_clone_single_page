@@ -57,7 +57,6 @@ class _ClearButton extends StatelessWidget {
         final controllerPostList = ControllerPostList.instance;
         context.read<PaginationBloc>().add(PaginationFetch(status: PaginationStatus.initial));
         controllerPostList.zeroCurrentIndex();
-        controllerPostList.piece = 2;
       },
       child: const Text(
         "Sıfırlar",

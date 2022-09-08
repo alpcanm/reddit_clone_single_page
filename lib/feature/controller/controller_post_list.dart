@@ -9,7 +9,7 @@ class ControllerPostList {
   final tempList = RepositoryPostList.instance;
   final List<PostModel> _postModelList = [];
 
-  List<PostModel> fetchProducts(int index) {
+  List<PostModel> fetchProducts(int index, [int piece = 2]) {
     _postModelList.clear();
 
     if (tempList.allPosts.length == index) {
@@ -26,7 +26,6 @@ class ControllerPostList {
     return _postModelList;
   }
 
-  int piece = 2;
   int _currentIndex = 0;
 
   void zeroCurrentIndex() {
