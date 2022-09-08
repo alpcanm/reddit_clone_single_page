@@ -6,4 +6,6 @@ class ColorConst {
   static const Color cardColor = Color(0xFFF1F2F4);
 
   static const Color backgroundColor = Color(0xFFC1C2C3);
+
+  static const Color seeMore = Colors.blueAccent;
 }

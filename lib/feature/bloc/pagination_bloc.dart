@@ -29,15 +29,14 @@ class PaginationBloc extends Bloc<PaginationEvent, PaginationState> {
     if (state.hasReachedMax) return;
 
     if (state.status == PaginationStatus.initial) {
-      final posts = getPostList();
-
-      if (posts.isNotEmpty) {
+      final newPosts = getPostList();
+      if (newPosts.isNotEmpty) {
         return emit(
           state.copyWith(
             hasReachedMax: false,
             status: PaginationStatus.success,
             lastProductIndex: controllerPostList.getCurrentIndex,
-            posts: posts,
+            posts: newPosts,
           ),
         );
       } else {
@@ -47,16 +46,16 @@ class PaginationBloc extends Bloc<PaginationEvent, PaginationState> {
       }
     }
 
-    final posts = getPostList();
+    final newPosts = getPostList();
 
-    if (posts.isEmpty) {
-      emit(state.copyWith(hasReachedMax: true));
+    if (newPosts.isEmpty) {
+      return emit(state.copyWith(hasReachedMax: true));
     } else {
-      emit(
+      return emit(
         state.copyWith(
           status: PaginationStatus.success,
           hasReachedMax: false,
-          posts: List.of(state.posts)..addAll(posts),
+          posts: List.of(state.posts)..addAll(newPosts),
           lastProductIndex: controllerPostList.getCurrentIndex,
         ),
       );

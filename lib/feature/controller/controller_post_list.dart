@@ -24,6 +24,9 @@ class ControllerPostList {
   }
 
   int _currentIndex = 0;
+  void zeroCurrentIndex() {
+    _currentIndex = 0;
+  }
 
   int get getCurrentIndex => _currentIndex;
 

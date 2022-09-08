@@ -12,11 +12,27 @@ class _AppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 0,
-      backgroundColor: ColorConst.transparent,
+      backgroundColor: ColorConst.cardColor,
       centerTitle: true,
+      leading: const Icon(
+        Icons.edit,
+        color: ColorConst.backgroundColor,
+      ),
+      actions: const [
+        Icon(
+          Icons.menu,
+          color: ColorConst.backgroundColor,
+        ),
+        SizedBox(
+          width: 16,
+        )
+      ],
       title: const Text(
         "reddit",
-        style: TextStyle(fontSize: SizeConst.size24),
+        style: TextStyle(
+          fontSize: SizeConst.size24,
+          color: Colors.black,
+        ),
       ),
     );
   }

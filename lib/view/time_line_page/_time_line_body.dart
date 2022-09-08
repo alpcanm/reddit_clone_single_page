@@ -6,17 +6,19 @@ class _TimeLineBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PaginationBloc, PaginationState>(
+      buildWhen: (previous, current) => previous.posts != current.posts,
       builder: (context, state) {
         return ListView.separated(
             separatorBuilder: (context, index) => const SizedBox(height: 8),
             shrinkWrap: true,
             itemCount: state.posts.length,
             itemBuilder: (context, index) {
-              final result = Column(
-                children: [Text(index.toString()), PostCard(postModel: state.posts[index])],
-              );
-
-              if (index == state.posts.length - 1) {
+              final result = PostCard(postModel: state.posts[index]);
+              if (index == 0) {
+                return Column(
+                  children: [const _ClearButton(), result],
+                );
+              } else if (index == state.posts.length - 1) {
                 return Column(
                   children: [result, const _MoreButton()],
                 );
@@ -42,5 +44,23 @@ class _MoreButton extends StatelessWidget {
           "Daha Fazla",
           style: TextStyle(color: Colors.red),
         ));
+  }
+}
+
+class _ClearButton extends StatelessWidget {
+  const _ClearButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        context.read<PaginationBloc>().add(PaginationFetch(status: PaginationStatus.initial));
+        ControllerPostList.instance.zeroCurrentIndex();
+      },
+      child: const Text(
+        "Sıfırla",
+        style: TextStyle(color: Colors.red),
+      ),
+    );
   }
 }
